@@ -6,7 +6,7 @@ resource "azurerm_eventgrid_partner_configuration" "eventgrid_partner_configurat
   tags                                    = each.value.tags
 
   dynamic "partner_authorization" {
-    for_each = each.value.partner_authorization != null ? [each.value.partner_authorization] : []
+    for_each = each.value.partner_authorization != null ? each.value.partner_authorization : []
     content {
       authorization_expiration_time_in_utc = partner_authorization.value.authorization_expiration_time_in_utc
       partner_name                         = partner_authorization.value.partner_name
