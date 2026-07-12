@@ -1,3 +1,7 @@
+output "eventgrid_partner_configurations_id" {
+  description = "Map of id values across all eventgrid_partner_configurations, keyed the same as var.eventgrid_partner_configurations"
+  value       = { for k, v in azurerm_eventgrid_partner_configuration.eventgrid_partner_configurations : k => v.id }
+}
 output "eventgrid_partner_configurations_default_maximum_expiration_time_in_days" {
   description = "Map of default_maximum_expiration_time_in_days values across all eventgrid_partner_configurations, keyed the same as var.eventgrid_partner_configurations"
   value       = { for k, v in azurerm_eventgrid_partner_configuration.eventgrid_partner_configurations : k => v.default_maximum_expiration_time_in_days }
