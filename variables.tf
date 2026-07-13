@@ -14,7 +14,7 @@ EOT
 
   type = map(object({
     resource_group_name                     = string
-    default_maximum_expiration_time_in_days = optional(number) # Default: 7
+    default_maximum_expiration_time_in_days = optional(number)
     tags                                    = optional(map(string))
     partner_authorization = optional(list(object({
       authorization_expiration_time_in_utc = optional(string)
@@ -22,13 +22,5 @@ EOT
       partner_registration_id              = string
     })))
   }))
-  validation {
-    condition = alltrue([
-      for k, v in var.eventgrid_partner_configurations : (
-        v.partner_authorization == null || (length(v.partner_authorization) >= 1)
-      )
-    ])
-    error_message = "Each partner_authorization list must contain at least 1 items"
-  }
 }
 
